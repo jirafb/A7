@@ -1,0 +1,227 @@
+# depslib dependency file v1.0
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_adc.c
+	"stm32f0xx_adc.h"
+	"stm32f0xx_rcc.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_adc.h
+	"stm32f0xx.h"
+
+1451519432 d:\project\emblocks\siemens_a70\inc\stm32f0xx.h
+	"core_cm0.h"
+	"system_stm32f0xx.h"
+	<stdint.h>
+	"stm32f0xx_conf.h"
+
+1450909371 d:\project\emblocks\siemens_a70\cmsis\core_cm0.h
+	<stdint.h>
+	"core_cmInstr.h"
+	"core_cmFunc.h"
+
+1450909371 d:\project\emblocks\siemens_a70\cmsis\core_cminstr.h
+	<cmsis_iar.h>
+
+1450909371 d:\project\emblocks\siemens_a70\cmsis\core_cmfunc.h
+	<cmsis_iar.h>
+
+1450909371 d:\project\emblocks\siemens_a70\inc\system_stm32f0xx.h
+
+1450909371 d:\project\emblocks\siemens_a70\inc\stm32f0xx_conf.h
+	"stm32f0xx_adc.h"
+	"stm32f0xx_can.h"
+	"stm32f0xx_cec.h"
+	"stm32f0xx_crc.h"
+	"stm32f0xx_crs.h"
+	"stm32f0xx_comp.h"
+	"stm32f0xx_dac.h"
+	"stm32f0xx_dbgmcu.h"
+	"stm32f0xx_dma.h"
+	"stm32f0xx_exti.h"
+	"stm32f0xx_flash.h"
+	"stm32f0xx_gpio.h"
+	"stm32f0xx_syscfg.h"
+	"stm32f0xx_i2c.h"
+	"stm32f0xx_iwdg.h"
+	"stm32f0xx_pwr.h"
+	"stm32f0xx_rcc.h"
+	"stm32f0xx_rtc.h"
+	"stm32f0xx_spi.h"
+	"stm32f0xx_tim.h"
+	"stm32f0xx_usart.h"
+	"stm32f0xx_wwdg.h"
+	"stm32f0xx_misc.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_can.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_cec.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_crc.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_crs.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_comp.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_dac.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_dbgmcu.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_dma.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_exti.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_flash.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_gpio.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_syscfg.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_i2c.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_iwdg.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_pwr.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_rcc.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_rtc.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_spi.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_tim.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_usart.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_wwdg.h
+	"stm32f0xx.h"
+
+1450909371 d:\project\emblocks\siemens_a70\spl\inc\stm32f0xx_misc.h
+	"stm32f0xx.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_can.c
+	"stm32f0xx_can.h"
+	"stm32f0xx_rcc.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_cec.c
+	"stm32f0xx_cec.h"
+	"stm32f0xx_rcc.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_comp.c
+	"stm32f0xx_comp.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_crc.c
+	"stm32f0xx_crc.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_crs.c
+	"stm32f0xx_crs.h"
+	"stm32f0xx_rcc.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_dac.c
+	"stm32f0xx_dac.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_dbgmcu.c
+	"stm32f0xx_dbgmcu.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_dma.c
+	"stm32f0xx_dma.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_exti.c
+	"stm32f0xx_exti.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_flash.c
+	"stm32f0xx_flash.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_gpio.c
+	"stm32f0xx_gpio.h"
+	"stm32f0xx_rcc.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_i2c.c
+	"stm32f0xx_i2c.h"
+	"stm32f0xx_rcc.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_iwdg.c
+	"stm32f0xx_iwdg.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_misc.c
+	"stm32f0xx_misc.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_pwr.c
+	"stm32f0xx_pwr.h"
+	"stm32f0xx_rcc.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_rcc.c
+	"stm32f0xx_rcc.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_rtc.c
+	"stm32f0xx_rtc.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_spi.c
+	"stm32f0xx_spi.h"
+	"stm32f0xx_rcc.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_syscfg.c
+	"stm32f0xx_syscfg.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_tim.c
+	"stm32f0xx_tim.h"
+	"stm32f0xx_rcc.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_usart.c
+	"stm32f0xx_usart.h"
+	"stm32f0xx_rcc.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\spl\src\stm32f0xx_wwdg.c
+	"stm32f0xx_wwdg.h"
+	"stm32f0xx_rcc.h"
+
+1451687163 source:d:\project\emblocks\siemens_a70\src\main.c
+	"stm32f0xx_conf.h"
+	"LCD_A70.h"
+	"jusart.h"
+	"f7x9.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\src\startup_stm32f0xx.s
+
+1451687269 source:d:\project\emblocks\siemens_a70\src\lcd_a70.c
+	"LCD_A70.h"
+	"stm32f0xx_gpio.h"
+	"stm32f0xx_spi.h"
+	"stm32f0xx_rcc.h"
+	<stdio.h>
+	<stdarg.h>
+
+1451686517 d:\project\emblocks\siemens_a70\inc\lcd_a70.h
+	"stm32f0xx.h"
+
+1450909371 source:d:\project\emblocks\siemens_a70\src\system_stm32f0xx.c
+	"stm32f0xx.h"
+
+1369310096 d:\project\emblocks\siemens_a70\inc\f5x7.h
+
+1369344917 d:\project\emblocks\siemens_a70\inc\f7x9.h
+
+1451588049 source:d:\project\emblocks\siemens_a70\src\jusart.c
+	"jusart.h"
+	"stm32f0xx.h"
+
+1451531710 d:\project\emblocks\siemens_a70\inc\jusart.h
+	"stm32f0xx.h"
+

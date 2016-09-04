@@ -1,0 +1,201 @@
+// "jusart.c"
+
+#include "jusart.h"
+#include "stm32f0xx.h"
+
+
+#define RX_BUFFER_SIZE	16
+#define TX_BUFFER_SIZE	32
+
+
+volatile static uint8_t RX_rd_index, RX_wr_index, TX_rd_index, TX_wr_index;
+volatile static uint8_t RX_buffer_overflow=0, RX_counter=0, RX_CR=0, TX_counter=0;
+
+volatile static char RX_buffer[RX_BUFFER_SIZE], TX_buffer[TX_BUFFER_SIZE];
+
+char Line_buffer[16];
+
+
+uint8_t jusart_ItoA(int value, char* buffer, uint8_t zero_pad)
+{
+  char* pbuffer = buffer;
+  uint8_t negative = 0;
+  uint8_t i, len;
+  int digit;
+
+  if (value < 0) {
+    negative = 1;
+    value = -value;
+    }
+
+  /* This builds the string back to front ... */
+  do {
+    digit = value % 10;
+    *(pbuffer++) = digit + '0';
+    value /= 10;
+  } while (value > 0);
+
+  for (i = (pbuffer - buffer); i < zero_pad; i++) {
+    *(pbuffer++) = '0';
+    }
+
+  if (negative) *(pbuffer++) = '-';
+
+  *(pbuffer) = '\0';
+
+  /* ... now we reverse it (could do it recursively but will
+   * conserve the stack space) */
+
+  len = (pbuffer - buffer);
+  for (i = 0; i < len / 2; i++) {
+    char j = buffer[i];
+    buffer[i] = buffer[len-i-1];
+    buffer[len-i-1] = j;
+	}
+
+  return len;
+}
+
+
+
+
+
+void jusart_Config(void)
+{
+  USART_InitTypeDef USART_InitStructure;
+  GPIO_InitTypeDef GPIO_InitStructure;
+  NVIC_InitTypeDef NVIC_InitStructure;
+
+  RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9 | GPIO_Pin_10;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_NOPULL;
+  GPIO_Init(GPIOA, &GPIO_InitStructure);
+  GPIO_PinAFConfig(GPIOA, GPIO_PinSource9,  GPIO_AF_1);		// PA9  ==> Tx (UART1)
+  GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_1);		// PA10 ==> Rx (UART1)
+
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1, ENABLE);
+  USART_DeInit(USART1);
+  USART_InitStructure.USART_BaudRate = 115200;
+  USART_InitStructure.USART_WordLength = USART_WordLength_8b;
+  USART_InitStructure.USART_StopBits = USART_StopBits_1;
+  USART_InitStructure.USART_Parity = USART_Parity_No;
+  USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
+  USART_InitStructure.USART_Mode = USART_Mode_Rx | USART_Mode_Tx;
+  USART_Init(USART1, &USART_InitStructure);
+
+  USART_ITConfig(USART1, USART_IT_RXNE, ENABLE);
+  USART_Cmd(USART1, ENABLE);
+  USART1_TX_Interrupt_Disable;
+
+  USART1_Interrupt_Disable;
+  RX_rd_index = RX_wr_index = TX_rd_index = TX_wr_index = 0;
+
+  // jeste zbyva konfigurace preruseni
+  NVIC_InitStructure.NVIC_IRQChannel = USART1_IRQn;
+  NVIC_InitStructure.NVIC_IRQChannelPriority = 0;
+  NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+  NVIC_Init(&NVIC_InitStructure);
+
+
+}
+
+
+void jusart_Puts( char * CH)
+{
+  while(*CH) {
+    while( (USART1->ISR & 0x00000040) == 0x00000000 );	// ceka na nahozeni flagu TC (Transmission Complete)
+    USART1->TDR = *CH++;
+    while( (USART1->ISR & 0x00000040) == 0x00000000 );	// ceka na nahozeni flagu TC (Transmission Complete)
+  }
+}
+
+
+uint8_t jusart_RXCR(void)
+{
+ return RX_CR;
+}
+
+
+void jusart_GetLine(void)
+{
+  char ch;
+  uint8_t i=0;
+
+ while(RX_counter > 0) {
+   ch=RX_buffer[RX_rd_index];
+   if(++RX_rd_index == RX_BUFFER_SIZE) RX_rd_index=0;
+   if(ch >= ' ') Line_buffer[i++] = ch;
+   USART1_Interrupt_Disable;
+   --RX_counter;
+   USART1_Interrupt_Enable;
+   if((RX_counter == 0) || (ch == 0x0D)) {
+     RX_CR = 0;
+     if(ch == )
+     Line_buffer[i] = 0;
+     return;
+     }
+   }
+
+}
+
+
+
+
+/*
+char getchar(void)
+{
+  char data;
+
+ while(RX_counter == 0);
+ data = RX_buffer[RX_rd_index];
+ if(++RX_rd_index == RX_BUFFER_SIZE) RX_rd_index=0;
+ USART1_Interrupt_Disable;
+ --RX_counter;
+ USART1_Interrupt_Enable;
+ return data;
+}
+*/
+
+
+
+void USART1_IRQHandler(void)
+{
+  volatile uint32_t flags;
+  char tmp;
+
+
+ if(TX_counter > 0) {
+   if((USART1->ISR & USART_ISR_TXE) != 0) {
+     --TX_counter;
+     USART1->TDR = TX_buffer[TX_rd_index++];
+     if(TX_rd_index == TX_BUFFER_SIZE) {
+       TX_rd_index = 0;
+       USART1_Interrupt_Disable;
+       }
+     }
+   }
+
+ if((USART1->ISR & USART_ISR_RXNE) != 0) {
+   // nacteme vsechny flagy, ktere nas zajimaji najednou pro postupne zpracovani:
+   flags = (USART1->ISR & (USART_ISR_RXNE | USART_ISR_ORE | USART_ISR_FE | USART_ISR_PE));
+   tmp = USART1->RDR;				// nacti data
+   if(flags == USART_ISR_RXNE) {					// v datovem registru je prijaty bajt bez chyb
+     if(RX_counter < RX_BUFFER_SIZE) {
+       RX_buffer[RX_wr_index] = tmp;
+       if(tmp == 0x0D) RX_CR = 1;					// konec radku
+       if(++RX_wr_index == RX_BUFFER_SIZE) RX_wr_index = 0;
+       if(++RX_counter >= RX_BUFFER_SIZE) {
+         RX_buffer_overflow = 1;
+         }
+       }
+     }
+   else {		// nejake chybove flagy
+     USART1->ICR = (flags & (USART_ISR_ORE | USART_ISR_FE | USART_ISR_PE));		// maz jen error flagy
+     }
+   }
+}
+
+// end of "jusart.c"
